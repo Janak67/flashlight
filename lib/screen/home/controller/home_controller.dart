@@ -7,66 +7,23 @@ class HomeController extends GetxController {
   RxInt strobeInterval = 500.obs;
   Timer? strobeTimer;
   var showSlider = false.obs;
-  var isListening = false.obs;
-  FlutterSoundRecorder? recorder;
-  StreamSubscription? recorderSubscription;
 
   @override
   void onInit() {
     super.onInit();
-    recorder = FlutterSoundRecorder();
-    requestPermissions();
-  }
-
-  @override
-  void onClose() {
-    recorder?.closeRecorder();
-    recorderSubscription?.cancel();
-    super.onClose();
-  }
-
-  Future<void> requestPermissions() async {
-    await [
-      Permission.microphone,
-      Permission.camera,
-      Permission.sensors,
-    ].request();
-  }
-
-  void startListening() {
-    var micStream = MicStream.microphone(
-      audioSource: AudioSource.MIC,
-      sampleRate: 44100,
-    );
-
-    recorderSubscription = micStream.listen((samples) {
-      double amplitude = getAmplitude(samples);
-      if (detectBeat(amplitude)) {
-        toggleFlashlight();
-      }
-    });
-
-    isListening.value = true;
-  }
-
-  void stopListening() async {
-    recorderSubscription?.cancel();
-    isListening.value = false;
-  }
-
-  double getAmplitude(List<int> samples) {
-    int sum = samples.fold(0, (sum, sample) => sum + sample.abs());
-    return sum / samples.length;
-  }
-
-  bool detectBeat(double amplitude) {
-    if (amplitude > 50) {
-      return true;
-    }
-    return false;
+    initializeFlashlightState();
   }
 
   // FlashLight
+  void initializeFlashlightState() async {
+    try {
+      bool isOn = await TorchLight.isTorchAvailable();
+      isFlashlight.value = isOn;
+    } catch (e) {
+      print("Error initializing flashlight state: $e");
+    }
+  }
+
   void toggleFlashlight() async {
     isFlashlight.value = !isFlashlight.value;
     if (isFlashlight.value) {

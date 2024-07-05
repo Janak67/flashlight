@@ -44,8 +44,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title:
                   Text('ABOUT', style: Theme.of(context).textTheme.titleLarge),
             ),
-            customListTile('Customer Support'),
-            customListTile('Rate Us'),
             customListTile('Privacy Policy'),
             customListTile('Terms And Conditions'),
           ],

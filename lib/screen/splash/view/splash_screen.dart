@@ -8,8 +8,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  SettingController controller = Get.put(SettingController());
-
   @override
   void initState() {
     super.initState();

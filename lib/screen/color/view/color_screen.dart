@@ -14,36 +14,31 @@ class _ColorScreenState extends State<ColorScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: InkWell(
-          onTap: () => controller.toggleButtonVisibility(),
+        body: GestureDetector(
+          onHorizontalDragEnd: (details) {
+            if (details.primaryVelocity! < 0) {
+              controller.changeColor();
+            }
+          },
+          onVerticalDragUpdate: (details) =>
+              controller.adjustBrightness(details.delta.dy * -0.01),
           child: Obx(
-            () => Container(
-              alignment: Alignment.center,
-              height: MediaQuery.sizeOf(context).height,
-              width: MediaQuery.sizeOf(context).width,
-              color: controller.color.value,
-              child: controller.isButtonVisible.value
-                  ? Container(
-                      height: 40,
-                      width: 100,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: controller
-                                .getTextColor(controller.color.value)),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: InkWell(
-                        onTap: () => pickColor(context),
-                        child: Text(
-                          'Change Color',
-                          style: TextStyle(
-                              color: controller
-                                  .getTextColor(controller.color.value)),
-                        ),
-                      ),
-                    )
-                  : const SizedBox(),
+            () => Stack(
+              children: [
+                Container(
+                  height: MediaQuery.sizeOf(context).height,
+                  width: MediaQuery.sizeOf(context).width,
+                  color: controller.color.value,
+                ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: IconButton(
+                    onPressed: () => Get.offAllNamed('home'),
+                    icon: Icon(Icons.close, color: Colors.white),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

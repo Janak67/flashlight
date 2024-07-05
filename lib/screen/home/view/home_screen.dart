@@ -78,24 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 40),
-              IconButton(
-                onPressed: () {
-                  if (controller.isListening.value) {
-                    controller.stopListening();
-                  } else {
-                    controller.startListening();
-                  }
-                  // SystemNavigator.pop();
-                },
-                icon: Obx(
-                  () => Icon(Icons.audio_file_outlined,
-                      color: setController.isLight.value
-                          ? Colors.white
-                          : Colors.black,
-                      size: 40),
-                ),
-              ),
-              const SizedBox(height: 40),
               Obx(
                 () => IconButton(
                   onPressed: controller.strobeEffect,

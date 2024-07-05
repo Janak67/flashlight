@@ -9,7 +9,8 @@ ThemeData lightTheme = ThemeData(
     titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
   ),
   textTheme: const TextTheme(
-    titleLarge: TextStyle(color: Colors.blue, fontSize: 18),
+    titleLarge: TextStyle(
+        color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
     titleMedium: TextStyle(color: Colors.white, fontSize: 16),
   ),
   brightness: Brightness.light,
@@ -24,7 +25,8 @@ ThemeData darkTheme = ThemeData(
     titleTextStyle: TextStyle(color: Colors.black, fontSize: 25),
   ),
   textTheme: const TextTheme(
-    titleLarge: TextStyle(color: Colors.blue, fontSize: 18),
+    titleLarge: TextStyle(
+        color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
     titleMedium: TextStyle(color: Colors.black, fontSize: 16),
   ),
   brightness: Brightness.dark,
