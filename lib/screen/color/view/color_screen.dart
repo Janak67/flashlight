@@ -15,41 +15,36 @@ class _ColorScreenState extends State<ColorScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: GestureDetector(
-          onVerticalDragUpdate: (details) =>
-              controller.adjustBrightness(details.delta.dy * -0.01),
-          child: Obx(
-            () => Stack(
-              children: [
-                Container(
-                  height: MediaQuery.sizeOf(context).height,
-                  width: MediaQuery.sizeOf(context).width,
-                  color: controller.color.value,
-                ),
-                Positioned(
-                  right: 10,
-                  child: IconButton(
-                    onPressed: () => Get.offAllNamed('home'),
-                    icon: Icon(
-                      Icons.close,
-                      color: controller.getTextColor(controller.color.value),
-                    ),
+        body: Obx(
+          () => Stack(
+            children: [
+              Container(
+                height: MediaQuery.sizeOf(context).height,
+                width: MediaQuery.sizeOf(context).width,
+                color: controller.color.value,
+              ),
+              Positioned(
+                right: 10,
+                child: IconButton(
+                  onPressed: () => Get.offAllNamed('home'),
+                  icon: Icon(
+                    Icons.close,
+                    color: controller.getTextColor(controller.color.value),
                   ),
                 ),
-                SizedBox(width: 10),
-                Positioned(
-                  right: 55,
-                  child: IconButton(
-                    onPressed: () => pickColor(context),
-                    icon: Icon(
-                      Icons.color_lens_outlined,
-                      size: 27,
-                      color: controller.getTextColor(controller.color.value),
-                    ),
+              ),
+              Positioned(
+                right: 55,
+                child: IconButton(
+                  onPressed: () => pickColor(context),
+                  icon: Icon(
+                    Icons.color_lens_outlined,
+                    size: 27,
+                    color: controller.getTextColor(controller.color.value),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

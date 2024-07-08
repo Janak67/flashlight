@@ -20,7 +20,7 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     actionsIconTheme: IconThemeData(color: Colors.black),
     iconTheme: IconThemeData(color: Colors.black),
-    backgroundColor: Colors.grey,
+    backgroundColor: Color(0xFFF1F1F1),
     centerTitle: true,
     titleTextStyle: TextStyle(color: Colors.black, fontSize: 25),
   ),
@@ -32,5 +32,5 @@ ThemeData darkTheme = ThemeData(
     titleMedium: TextStyle(color: Colors.black, fontSize: 16),
   ),
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: Colors.grey,
+  scaffoldBackgroundColor: Color(0xFFF1F1F1),
 );
