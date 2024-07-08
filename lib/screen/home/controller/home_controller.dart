@@ -11,11 +11,11 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initializeFlashlightState();
+    initializeFlashlight();
   }
 
   // FlashLight
-  void initializeFlashlightState() async {
+  void initializeFlashlight() async {
     try {
       bool isOn = await TorchLight.isTorchAvailable();
       isFlashlight.value = isOn;

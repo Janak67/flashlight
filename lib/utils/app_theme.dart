@@ -24,9 +24,11 @@ ThemeData darkTheme = ThemeData(
     centerTitle: true,
     titleTextStyle: TextStyle(color: Colors.black, fontSize: 25),
   ),
-  textTheme: const TextTheme(
+  textTheme: TextTheme(
     titleLarge: TextStyle(
-        color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+        color: Colors.black.withOpacity(0.8),
+        fontSize: 18,
+        fontWeight: FontWeight.bold),
     titleMedium: TextStyle(color: Colors.black, fontSize: 16),
   ),
   brightness: Brightness.dark,

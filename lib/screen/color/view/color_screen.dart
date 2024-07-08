@@ -1,4 +1,5 @@
 import 'package:flashlight/utils/import.dart';
+import 'package:flashlight/widget/pick_color_widget.dart';
 
 class ColorScreen extends StatefulWidget {
   const ColorScreen({super.key});
@@ -15,11 +16,6 @@ class _ColorScreenState extends State<ColorScreen> {
     return SafeArea(
       child: Scaffold(
         body: GestureDetector(
-          onHorizontalDragEnd: (details) {
-            if (details.primaryVelocity! < 0) {
-              controller.changeColor();
-            }
-          },
           onVerticalDragUpdate: (details) =>
               controller.adjustBrightness(details.delta.dy * -0.01),
           child: Obx(
@@ -31,11 +27,25 @@ class _ColorScreenState extends State<ColorScreen> {
                   color: controller.color.value,
                 ),
                 Positioned(
-                  top: 10,
                   right: 10,
                   child: IconButton(
                     onPressed: () => Get.offAllNamed('home'),
-                    icon: Icon(Icons.close, color: Colors.white),
+                    icon: Icon(
+                      Icons.close,
+                      color: controller.getTextColor(controller.color.value),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Positioned(
+                  right: 55,
+                  child: IconButton(
+                    onPressed: () => pickColor(context),
+                    icon: Icon(
+                      Icons.color_lens_outlined,
+                      size: 27,
+                      color: controller.getTextColor(controller.color.value),
+                    ),
                   ),
                 ),
               ],

@@ -37,7 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
               const Spacer(),
               Obx(
                 () => IconButton(
-                  onPressed: () => controller.toggleFlashlight(),
+                  onPressed: () {
+                    controller.toggleFlashlight();
+                    controller.strobeOn.value = false;
+                    controller.showSlider.value = false;
+                    controller.strobeTimer!.cancel();
+                  },
                   icon: Icon(
                       controller.isFlashlight.value
                           ? Icons.flashlight_off_outlined
@@ -80,7 +85,11 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 40),
               Obx(
                 () => IconButton(
-                  onPressed: controller.strobeEffect,
+                  onPressed: () {
+                    controller.toggleFlashlight();
+                    controller.initializeFlashlight();
+                    controller.strobeEffect();
+                  },
                   icon: Icon(Icons.sos_outlined,
                       color: controller.strobeOn.value
                           ? Colors.blue
@@ -96,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ? SizedBox(
                         width: 350,
                         child: Slider(
+                          activeColor: Colors.blue,
                           value: controller.strobeInterval.value.toDouble(),
                           min: 100,
                           max: 1000,
