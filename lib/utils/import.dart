@@ -15,3 +15,4 @@ export 'package:flashlight/screen/settings/view/settings_screen.dart';
 export 'package:flashlight/utils/helper/ads_helper.dart';
 export 'package:flashlight/screen/home/view/home_screen.dart';
 export 'package:flashlight/screen/splash/view/splash_screen.dart';
+export 'package:url_launcher/url_launcher.dart';

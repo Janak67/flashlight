@@ -44,17 +44,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title:
                   Text('ABOUT', style: Theme.of(context).textTheme.titleLarge),
             ),
-            customListTile('Privacy Policy'),
-            customListTile('Terms And Conditions'),
+            ListTile(
+              onTap: () async {
+                Uri url = Uri.parse(
+                    'https://brightlightapps.blogspot.com/2024/07/privacy-policy.html');
+                if (!await launchUrl(url,
+                    mode: LaunchMode.externalApplication)) {
+                  throw 'Could not launch $url';
+                }
+              },
+              title: Text(
+                'Privacy Policy',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            ListTile(
+              onTap: () async {
+                Uri url = Uri.parse(
+                    'https://brightlightapps.blogspot.com/2024/07/terms-conditions.html');
+                if (!await launchUrl(url,
+                    mode: LaunchMode.externalApplication)) {
+                  throw 'Could not launch $url';
+                }
+              },
+              title: Text('Terms And Conditions',
+                  style: Theme.of(context).textTheme.titleMedium),
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  ListTile customListTile(String text) {
-    return ListTile(
-      title: Text(text, style: Theme.of(context).textTheme.titleMedium),
     );
   }
 }
